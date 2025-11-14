@@ -1,0 +1,21 @@
+enter in mariadb database.
+
+docker exec -it mariadb mariadb -u <username> -p
+SHOW DATABASES;
+
+Use <databasename>;
+
+SHOW TABLE;
+
+docker volume ls                     # List volumes
+
+docker ps                     # List running containers
+
+docker ps -a                  # List all containers
+
+docker-compose up --build     # Build and run containers
+docker-compose down           # Stop and remove containers/networks
+docker-compose ps             # Show running services
+
+
+docker volume inspect <volume>       # Inspect volume (look for /home/login/data/)
