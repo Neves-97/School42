@@ -1,6 +1,7 @@
+#include "libft.h"
 #include <stdio.h>
 
-int main () {
-
-    printf("Hello World\n");
+int main(void)
+{
+    printf("%li\n", ft_strlen("coco"));
 }

@@ -15,7 +15,7 @@ NAME	:=	libft.a
 CC		:=	gcc
 CFLAGS	:= 	-Wall -Werror -Wextra -I./incs
 
-PATH_SRC		:=	./
+PATH_SRC		:=	./srcs
 PATH_INCLUDES	:=	./incs
 PATH_BUILD		:= ./build
 PATH_OBJS		:= $(PATH_BUILD)/objs
