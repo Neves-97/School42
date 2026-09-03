@@ -16,14 +16,11 @@
     src: nginx/default.conf
     dest: /opt/cloud-1/nginx/default.conf
     mode: '0644'
+  notify: Start application stack
 
 - name: Deploy Docker Compose file
   ansible.builtin.template:
     src: docker-compose.yml.j2
     dest: /opt/cloud-1/docker-compose.yml
     mode: '0644'
-
-- name: Start application stack
-  ansible.builtin.command:
-    cmd: docker compose up -d
-    chdir: /opt/cloud-1
+  notify: Start application stack

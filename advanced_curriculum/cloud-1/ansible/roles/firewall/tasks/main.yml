@@ -6,33 +6,41 @@
     update_cache: true
 
 - name: Allow SSH
-  community.general.ufw:
-    rule: allow
-    port: '22'
-    proto: tcp
+  ansible.builtin.command:
+    cmd: ufw allow 22/tcp
+  register: ufw_ssh
+  changed_when: "'Skipping adding existing rule' not in ufw_ssh.stdout"
 
 - name: Allow HTTP
-  community.general.ufw:
-    rule: allow
-    port: '80'
-    proto: tcp
+  ansible.builtin.command:
+    cmd: ufw allow 80/tcp
+  register: ufw_http
+  changed_when: "'Skipping adding existing rule' not in ufw_http.stdout"
 
 - name: Allow HTTPS
-  community.general.ufw:
-    rule: allow
-    port: '443'
-    proto: tcp
+  ansible.builtin.command:
+    cmd: ufw allow 443/tcp
+  register: ufw_https
+  changed_when: "'Skipping adding existing rule' not in ufw_https.stdout"
+
+- name: Remove RDP access
+  ansible.builtin.shell:
+    cmd: "yes | ufw delete allow 3389/tcp"
+  register: ufw_rdp
+  changed_when: "'Rule deleted' in ufw_rdp.stdout"
+  failed_when: false
 
 - name: Set default incoming policy
-  community.general.ufw:
-    direction: incoming
-    policy: deny
+  ansible.builtin.command:
+    cmd: ufw default deny incoming
+  changed_when: false
 
 - name: Set default outgoing policy
-  community.general.ufw:
-    direction: outgoing
-    policy: allow
+  ansible.builtin.command:
+    cmd: ufw default allow outgoing
+  changed_when: false
 
 - name: Enable UFW
-  community.general.ufw:
-    state: enabled
+  ansible.builtin.command:
+    cmd: ufw --force enable
+  changed_when: false

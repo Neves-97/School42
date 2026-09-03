@@ -26,10 +26,11 @@
 
 ---
 - name: Configure Cloud-1 server
-  hosts: cloud-1
+  hosts: cloud
   become: true
 
   roles:
     - common
     - docker
+    - firewall
     - app
