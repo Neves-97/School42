@@ -1,0 +1,35 @@
+# ---
+# - name: Test Cloud-1 server
+#   hosts: cloud-1
+
+#   tasks:
+#     - name: Get server hostname
+#       ansible.builtin.command: hostname
+#       register: server_hostname
+
+#     - name: Show server hostname
+#       ansible.builtin.debug:
+#         msg: "The server hostname is {{ server_hostname.stdout }}"
+
+# ---
+# - name: Test Cloud-1 server
+#   hosts: cloud-1
+#   become: true
+
+#   tasks:
+#     - name: Create test directory
+#       ansible.builtin.file:
+#         path: /opt/cloud-1-test
+#         state: directory
+#         mode: '0755'
+
+
+---
+- name: Configure Cloud-1 server
+  hosts: cloud-1
+  become: true
+
+  roles:
+    - common
+    - docker
+    - app

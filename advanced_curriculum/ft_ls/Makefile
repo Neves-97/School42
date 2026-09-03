@@ -11,7 +11,9 @@ CFLAGS  := -Wall -Wextra -Werror
 INCS    := -I libft/incs
 LIBS    := libft/libft.a
 
-SRC     := srcs/main.c
+SRC     := srcs/main.c \
+		   srcs/init.c \
+		   srcs/parser.c
 
 all: $(NAME)
 

@@ -1,0 +1,4 @@
+// Know how to explain commands
+
+
+sudo install -m 0755 -d /etc/apt/keyrings

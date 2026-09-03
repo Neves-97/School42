@@ -1,0 +1,29 @@
+---
+- name: Create application directory
+  ansible.builtin.file:
+    path: /opt/cloud-1
+    state: directory
+    mode: '0755'
+
+- name: Create nginx configuration directory
+  ansible.builtin.file:
+    path: /opt/cloud-1/nginx
+    state: directory
+    mode: '0755'
+
+- name: Deploy nginx configuration
+  ansible.builtin.copy:
+    src: nginx/default.conf
+    dest: /opt/cloud-1/nginx/default.conf
+    mode: '0644'
+
+- name: Deploy Docker Compose file
+  ansible.builtin.template:
+    src: docker-compose.yml.j2
+    dest: /opt/cloud-1/docker-compose.yml
+    mode: '0644'
+
+- name: Start application stack
+  ansible.builtin.command:
+    cmd: docker compose up -d
+    chdir: /opt/cloud-1
